@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Saara Management System Pvt. Ltd., Certificate Status Verification</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    body {
+      background-color: #f7f9fa;
+      color: #333333;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Top Bar */
+    #header-top {
+      background-color: #1a252f;
+      color: #b0bec5;
+      padding: 9px 0;
+      font-size: 13px;
+      border-bottom: 2px solid #0088cc;
+    }
+    .container {
+      max-width: 1170px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    .top-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .top-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .top-left a {
+      color: #ffffff;
+      font-weight: 500;
+    }
+    .top-left i {
+      color: #00a8ff;
+      margin-right: 5px;
+    }
+
+    /* Main Header */
+    #header {
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 14px 0;
+    }
+    .header-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-badge {
+      background: #004b91;
+      color: #ffffff;
+      padding: 8px 14px;
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: 1.5px;
+      border-radius: 4px;
+    }
+    .logo-text-group h2 {
+      font-size: 19px;
+      font-weight: 700;
+      color: #003366;
+      line-height: 1.2;
+    }
+    .logo-text-group p {
+      font-size: 11px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .navigation ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-weight: 600;
+      font-size: 13.5px;
+    }
+    .navigation ul li a {
+      color: #2c3e50;
+      transition: color 0.2s;
+    }
+    .navigation ul li a:hover,
+    .navigation ul li.active a {
+      color: #0088cc;
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      background: #e9ecef;
+      padding: 16px 0;
+      border-bottom: 1px solid #dee2e6;
+      margin-bottom: 30px;
+    }
+    .breadcrumbs h4 {
+      font-size: 20px;
+      color: #212529;
+      font-weight: 600;
+    }
+
+    /* Content Area */
+    .sections {
+      padding-bottom: 50px;
+    }
+    .main-grid {
+      display: grid;
+      grid-template-columns: 2.7fr 1fr;
+      gap: 30px;
+    }
+    @media (max-width: 900px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Verification Box */
+    .verification-card {
+      background: #ffffff;
+      border: 1px solid #e1e7ec;
+      border-radius: 6px;
+      padding: 30px 25px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .verification-card h6 {
+      font-size: 17px;
+      color: #004b91;
+      border-bottom: 2px solid #0088cc;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Table Styling matching Saara original */
+    .cert-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    .cert-table td {
+      padding: 9px 12px;
+      vertical-align: top;
+      font-size: 13.5px;
+      border-bottom: 1px solid #f1f3f5;
+    }
+    .cert-table td.label-col {
+      width: 38%;
+      color: #333333;
+      font-weight: 700;
+    }
+    .cert-table td.val-col {
+      width: 62%;
+      color: #444444;
+      font-weight: 500;
+    }
+    .company-title-row td {
+      padding: 15px 12px;
+      background: #f8fafc;
+      border-bottom: 2px solid #0088cc;
+    }
+    .company-name-text {
+      font-size: 22px;
+      font-weight: 800;
+      color: #003366;
+      text-transform: uppercase;
+    }
+    .status-badge {
+      display: inline-block;
+      background-color: #28a745;
+      color: #ffffff;
+      padding: 4px 14px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    /* Sidebar Widget */
+    .sidebar-widget {
+      background: #ffffff;
+      border: 1px solid #e1e7ec;
+      border-radius: 6px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .sidebar-widget h6 {
+      font-size: 16px;
+      color: #004b91;
+      border-bottom: 2px solid #0088cc;
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    .accred-logo-box {
+      text-align: center;
+      padding: 15px 10px;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 4px;
+    }
+    .accred-logo-box p {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+
+    /* Footer */
+    #footer {
+      background: #1e293b;
+      color: #cbd5e1;
+      padding: 40px 0 20px 0;
+      margin-top: 40px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #334155;
+    }
+    .footer-widget h6 {
+      font-size: 16px;
+      color: #ffffff;
+      margin-bottom: 18px;
+      font-weight: 600;
+      border-left: 3px solid #0088cc;
+      padding-left: 10px;
+    }
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+    .footer-links li i {
+      color: #0088cc;
+      margin-right: 8px;
+      font-size: 11px;
+    }
+    #footer-bottom {
+      background: #0f172a;
+      padding: 18px 0;
+      color: #94a3b8;
+      font-size: 12.5px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Contact Header -->
+  <header id="header-top">
+    <div class="container top-flex">
+      <div class="top-left">
+        <span><i class="fa fa-phone"></i> +919810128532</span>
+        <span><i class="fa fa-envelope"></i> info@saaracertification.com</span>
+        <span><i class="fa fa-globe"></i> International Presence</span>
+      </div>
+      <div>
+        <span>Global ISO Assessment & Certification</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Bar -->
+  <header id="header">
+    <div class="container header-nav">
+      <div class="logo-container">
+        <div class="logo-badge">SAARA</div>
+        <div class="logo-text-group">
+          <h2>SAARA MANAGEMENT SYSTEM</h2>
+          <p>Certification & Inspection Body</p>
+        </div>
+      </div>
+      <nav class="navigation">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Accreditation</a></li>
+          <li><a href="#">ISO Certification</a></li>
+          <li class="active"><a href="#">Certificate Status</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs Bar -->
+  <div class="breadcrumbs">
+    <div class="container">
+      <h4>Certificate Status Verification</h4>
+    </div>
+  </div>
+
+  <!-- Content Section -->
+  <div class="sections">
+    <div class="container">
+      <div class="main-grid">
+
+        <!-- Left Column: Verification Result Table -->
+        <div class="verification-card">
+          <h6>Certified Organisation Details</h6>
+
+          <table class="cert-table">
+            <tbody>
+              <tr class="company-title-row">
+                <td colspan="2">
+                  <span class="company-name-text" id="company-name">HI TECH HRMS (PRIVATE) LIMITED</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="label-col">Certificate Number :</td>
+                <td class="val-col"><strong id="cert-no" style="color: #003366; font-size: 15px;">HT/QMS/W54/9667</strong></td>
+              </tr>
+              <tr>
+                <td class="label-col">Scope :</td>
+                <td class="val-col" id="cert-scope" style="line-height: 1.6; text-align: justify;">
+                  Provision of End-To-End Human Resource Outsourcing, Total Workforce Solutions, and Recruitment &amp; Supply of Skilled, Semi-Skilled, and Unskilled Manpower; Delivery of Professional Commercial, Residential, and Industrial Janitorial Services, Integrated Facility Care &amp; Cleaning Management; and the Sourcing, Distribution, And Supply of Specialized Cleaning Chemicals, Materials, Consumables, and Allied Hygiene Equipment
+                </td>
+              </tr>
+              <tr>
+                <td class="label-col">Address :</td>
+                <td class="val-col" id="cert-address">
+                  Office no. 402, 4th floor, Rock Trade Center, Bagh-e-zehra Street, Opposite Jillani Tower, Karachi - Pakistan
+                </td>
+              </tr>
+              <tr>
+                <td class="label-col">Certification Standard :</td>
+                <td class="val-col"><strong id="standard-val">ISO 9001:2015</strong></td>
+              </tr>
+              <tr>
+                <td class="label-col">Initial Registration Date :</td>
+                <td class="val-col" id="reg-date">17-11-2025</td>
+              </tr>
+              <tr>
+                <td class="label-col">Issue Date :</td>
+                <td class="val-col" id="issue-date">30-04-2026</td>
+              </tr>
+              <tr>
+                <td class="label-col">Surveillance-1 :</td>
+                <td class="val-col" id="surv-1"><strong style="color: #28a745;">DONE</strong></td>
+              </tr>
+              <tr>
+                <td class="label-col">Surveillance-2 :</td>
+                <td class="val-col" id="surv-2">18-06-2026</td>
+              </tr>
+              <tr>
+                <td class="label-col">Recertification Due on :</td>
+                <td class="val-col" id="recert-date">18-06-2026</td>
+              </tr>
+              <tr>
+                <td class="label-col">Expiry Date :</td>
+                <td class="val-col"><strong id="expiry-date">16-10-2027</strong></td>
+              </tr>
+              <tr>
+                <td class="label-col">Status :</td>
+                <td class="val-col">
+                  <span class="status-badge" id="cert-status">Active</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Right Column: Accreditation Info -->
+        <div>
+          <div class="sidebar-widget">
+            <h6>Accreditation Board</h6>
+            <div class="accred-logo-box">
+              <strong style="color: #003366; font-size: 15px;">UAF / IAF Multilateral Recognition</strong>
+              <p>Accredited by United Accreditation Foundation (UAF), USA.<br>Accreditation No: CB-MS-3501</p>
+            </div>
+            <div style="margin-top: 18px; font-size: 13px; color: #555;">
+              <p><i class="fa fa-check-circle" style="color: #28a745;"></i> Surveillance Verified</p>
+              <p style="margin-top: 6px;"><i class="fa fa-shield" style="color: #0088cc;"></i> Authentic Registered Record</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer id="footer">
+    <div class="container footer-grid">
+      <div class="footer-widget">
+        <h6>Quick Links</h6>
+        <ul class="footer-links">
+          <li><i class="fa fa-chevron-right"></i> Home</li>
+          <li><i class="fa fa-chevron-right"></i> About Us</li>
+          <li><i class="fa fa-chevron-right"></i> ISO Certification</li>
+          <li><i class="fa fa-chevron-right"></i> Certificate Status</li>
+        </ul>
+      </div>
+      <div class="footer-widget">
+        <h6>Contact Us</h6>
+        <p style="font-size: 13px; margin-bottom: 8px;"><i class="fa fa-envelope" style="color: #0088cc;"></i> info@saaracertification.com</p>
+        <p style="font-size: 13px;"><i class="fa fa-phone" style="color: #0088cc;"></i> +919810128532</p>
+      </div>
+    </div>
+  </footer>
+
+  <footer id="footer-bottom">
+    <div class="container">
+      Copyright &copy; Saara Management System Private Limited. All Rights Reserved.
+    </div>
+  </footer>
+
+  <!-- Script for Dynamic Query Parameters -->
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const paramMap = {
+      'cert': 'cert-no',
+      'company': 'company-name',
+      'scope': 'cert-scope',
+      'address': 'cert-address',
+      'standard': 'standard-val',
+      'reg': 'reg-date',
+      'issue': 'issue-date',
+      'surv1': 'surv-1',
+      'surv2': 'surv-2',
+      'recert': 'recert-date',
+      'expiry': 'expiry-date',
+      'status': 'cert-status'
+    };
+
+    for (const [param, elementId] of Object.entries(paramMap)) {
+      if (urlParams.has(param)) {
+        document.getElementById(elementId).textContent = urlParams.get(param);
+      }
+    }
+  </script>
+
+</body>
+</html>
